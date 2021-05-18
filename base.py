@@ -11,8 +11,9 @@ def A_template0(wavelength, flux_spectra, v_prim):
     """
     for spectrum in flux_spectra:
         if len(wavelength) != len(spectrum):
-            print("The dimensions of wavelenght and spectra arrays must be the same")
-            raise
+            raise (
+        "The dimensions of wavelenght and spectra arrays must be the same"
+            )
     A_arrays = np.array(
         [dop(wavelength, spec, -v)[0] for spec, v in zip(flux_spectra, v_prim)]
     )
@@ -35,10 +36,9 @@ def B_template(wavelength, flux_spectra, v_prim, v_sec, A, **kwargs):
     """
     for spectrum in flux_spectra:
         if len(wavelength) != len(spectrum):
-            print(
-                "The dimensions of wavelenght and" + "spectra arrays must be the same"
+            raise (
+        "The dimensions of wavelenght and spectra arrays must be the same"
             )
-            raise
     B_arrays = np.array(
         [
             dop(wavelength, spec, -vs)[0] - dop(wavelength, A, vp - vs)[0]
